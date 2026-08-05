@@ -51,8 +51,8 @@ function track(action, el, e){
   if(e && e.preventDefault) e.preventDefault();
   var href = el && el.getAttribute ? el.getAttribute('href') : null;
   if(typeof fbq==='function'){
-    fbq('track','Contact',{contact_method:action});
-    fbq('track','Lead',{content_name:action});
+    var evt = (action === 'Call') ? 'Contact' : 'Lead';
+    fbq('track', evt, {contact_method:action});
   }
   if(href){
     setTimeout(function(){ window.location.href = href; }, 350);
